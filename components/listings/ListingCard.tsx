@@ -21,6 +21,7 @@ interface ListingCardProps {
     thumbnail?: string;
     likes?: number;
     comments_count?: number;
+    listing_images?: { url: string }[];
   };
 }
 
@@ -32,13 +33,15 @@ export default function ListingCard({ listing }: ListingCardProps) {
     return `${price} triệu`;
   };
 
+  const thumbnail = listing.listing_images?.[0]?.url || listing.thumbnail;
+
   return (
     <div className="card-hover group">
       {/* Image Area */}
       <div className="h-[200px] bg-gradient-to-br from-[#1A1A2E] to-[#16213E] relative flex items-center justify-center overflow-hidden">
-        {listing.thumbnail ? (
+        {thumbnail ? (
           <img 
-            src={listing.thumbnail} 
+            src={thumbnail} 
             alt={listing.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />

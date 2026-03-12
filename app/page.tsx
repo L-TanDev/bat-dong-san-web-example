@@ -108,7 +108,7 @@ export default function Home() {
       // Try fetching from real Supabase
       const { data, error } = await supabase
         .from('listings')
-        .select('*')
+        .select('*, listing_images(url)')
         .order('created_at', { ascending: false });
 
       if (data && data.length > 0) {
